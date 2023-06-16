@@ -1,0 +1,14 @@
+/*
+ * @Date: 2023-06-16 15:54:29
+ * @LastEditTime: 2023-06-16 15:56:27
+ * @Description: Vscode相关配置
+ */
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    } //配置Vscode提醒
+  },
+  "exclude": ["node_modules", "dist"]
+}
