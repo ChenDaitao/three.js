@@ -8,10 +8,15 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "element-plus": "^2.3.7",
     "pinia": "^2.0.21",
+    "sass": "^1.63.5",
+    "swiper": "^9.4.1",
     "three": "0.148.0",
     "vue": "^3.2.38",
-    "vue-router": "^4.1.5"
+    "vue-awesome-swiper": "^5.0.1",
+    "vue-router": "^4.1.5",
+    "vue3-seamless-scroll": "^2.0.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-16 15:41:00
- * @LastEditTime: 2023-06-16 17:50:47
- * @Description: THREE test
+ * @LastEditTime: 2023-06-25 14:13:28
+ * @Description:  base
 -->
 <script setup>
 import * as THREE from "three";
@@ -12,11 +12,11 @@ const scence = new THREE.Scene(); //创建场景
 
 const cuboid = new THREE.BoxGeometry(100, 60, 20); //创建一个长宽高为100的长方体对象
 
-const material = new THREE.MeshBasicMaterial({
-  color: 0x0000ff,
-  transparent: true, //开启透明
-  opacity: 0.1, //设置透明度
-}); //创建一个黑色网格基础材质对象 基础网格材质不受光照影响
+// const material = new THREE.MeshBasicMaterial({
+//   color: 0x0000ff,
+//   transparent: true, //开启透明
+//   opacity: 0.1, //设置透明度
+// }); //创建一个黑色网格基础材质对象 基础网格材质不受光照影响
 
 const lambertMaterial = new THREE.MeshLambertMaterial(); //Lambert材质 受光照影像
 
@@ -58,6 +58,7 @@ const axesHelper = new THREE.AxesHelper(150);
 scence.add(axesHelper);
 
 // 相机控件 通过鼠标控制摄像机
+// NOTE:可通过requestAnimationFrame进行循环渲染  无需再通过监听相机控件时间渲染
 const cameraControl = new OrbitControls(camera, renderer.domElement);
 /* 若控件改变相机位置参数，则重新渲染 */
 cameraControl.addEventListener("change", () => {
@@ -66,16 +67,22 @@ cameraControl.addEventListener("change", () => {
 });
 
 /* 创建光源 */
-const pointLight = new THREE.PointLight(0xffffff, 1.0); //创建点光源
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); //创建环境光 无辅助光源
-const directionLight = new THREE.DirectionalLight(0xffffff, 1); //创建平行光
+// const pointLight = new THREE.PointLight(0xffffff, 1.0); //点光源
+// const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); //环境光 无辅助光源
+const directionLight = new THREE.DirectionalLight(0xffffff, 1); //平行光
 
-pointLight.position.set(-400, -200, -300);
+directionLight.position.set(100, 0, 0);
+directionLight.target = mesh; //平行光可以指向网格模型对象 默认指向坐标原点
 scence.add(directionLight); //将光源添加到场景中
 
 // 辅助光源 可视化真实光源观察
-const pointLightHelper = new THREE.DirectionalLightHelper(pointLight, 10);
-screen.add(pointLightHelper);
+// const pointLightHelper = new THREE.pointLightHelper(pointLight, 10); //点光源辅助光
+const directionLightHelper = new THREE.DirectionalLightHelper(
+  directionLight,
+  5,
+  0xff0000
+);
+scence.add(directionLightHelper);
 </script>
 
 <template>
