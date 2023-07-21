@@ -13,6 +13,16 @@ const router = createRouter({
       name: "SECOND",
       component: () => import("@/views/2.loopRender/index.vue"),
     },
+    {
+      path: "/three",
+      name: "THREE",
+      component: () => import("@/views/3.eartchAnimation/index.vue"),
+    },
+    {
+      path: "/four",
+      name: "FOUR",
+      component: () => import("@/views/4.simpleSkyBox/index.vue"),
+    },
   ],
 });
 
